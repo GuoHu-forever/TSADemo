@@ -1,6 +1,5 @@
 #include "MiInputDispatcherStub.h"
-#include <Windows.h>
-void* MiInputDispatcherStub::sLibMiInputDispatcherImpl = nullptr;
+LIB_HANDLE MiInputDispatcherStub::sLibMiInputDispatcherImpl = nullptr;
 IMiInputDispatcherStub* MiInputDispatcherStub::sStubImplInstance = nullptr;
 std::mutex MiInputDispatcherStub::sLock;
 bool MiInputDispatcherStub::inited = false;
@@ -8,12 +7,12 @@ bool MiInputDispatcherStub::inited = false;
 IMiInputDispatcherStub* MiInputDispatcherStub::getImplInstance() {
     std::lock_guard<std::mutex> lock(sLock);
     if (!sLibMiInputDispatcherImpl && !inited) {
-        sLibMiInputDispatcherImpl =  LoadLibrary(TEXT(LIBPATH));
+        sLibMiInputDispatcherImpl =  LIB_LOAD(LIBPATH);
         if (sLibMiInputDispatcherImpl) {
             // typedef function pointer
             typedef IMiInputDispatcherStub* (*Create)();
             // get the createInputDispatcherStub function pointer
-            Create create = (Create)GetProcAddress((HINSTANCE )sLibMiInputDispatcherImpl, "createInputDispatcherStubImpl");
+            Create create = (Create)LIB_SYMBOL(sLibMiInputDispatcherImpl, "createInputDispatcherStubImpl");
             if (create) {
                 // invoke
                 sStubImplInstance = create();
@@ -36,10 +35,10 @@ void MiInputDispatcherStub::destroyImplInstance() {
     // typedef function pointer
     typedef void (*Destroy)(IMiInputDispatcherStub*);
     // get the destroyInputDispatcherStub function
-    Destroy destroy = (Destroy)GetProcAddress((HINSTANCE )sLibMiInputDispatcherImpl, "destroyInputDispatcherStubImpl");
+    Destroy destroy = (Destroy)LIB_SYMBOL(sLibMiInputDispatcherImpl, "destroyInputDispatcherStubImpl");
     // destroy sStubImplInstance
     destroy(sStubImplInstance);
-    FreeLibrary((HINSTANCE )sLibMiInputDispatcherImpl);
+    LIB_CLOSE(sLibMiInputDispatcherImpl);
     sLibMiInputDispatcherImpl = nullptr;
     sStubImplInstance = nullptr;
 }

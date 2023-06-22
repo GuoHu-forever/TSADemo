@@ -8,9 +8,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_COMPILER "C:\\Program Files\\LLVM\\bin\\clang-cl.exe")
 set(CMAKE_CXX_FLAGS "   -Wthread-safety")
+# 用于因为Windows旧的SDK定义有一个byte的类型，
+# 但在C++17里也有定义std::byte类型，这样就会造成重复定义
+add_definitions(-D_HAS_STD_BYTE=0)
 
 # 添加头文件目录
-include_directories(include)
+include_directories(${PROJECT_SOURCE_DIR}/include)
 
 # 添加库文件目录和输出目录
 link_directories(${PROJECT_SOURCE_DIR}/lib)
