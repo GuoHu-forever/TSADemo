@@ -8,12 +8,14 @@
     #define LIB_LOAD(libname) LoadLibrary(libname)
     #define LIB_SYMBOL(libhandle, symbolname) GetProcAddress(libhandle, symbolname)
     #define LIB_CLOSE(libhandle) FreeLibrary(libhandle)
+    #define LIBPATH "MiInputDispatcherStubImpl.dll"
 #else
     #include <dlfcn.h>
     #define LIB_HANDLE void*
     #define LIB_LOAD(libname) dlopen(libname, RTLD_LAZY)
     #define LIB_SYMBOL(libhandle, symbolname) dlsym(libhandle, symbolname)
     #define LIB_CLOSE(libhandle) dlclose(libhandle)
+    #define LIBPATH "MiInputDispatcherStubImpl.so"
 #endif
 class MiInputDispatcherStub
 {
@@ -24,7 +26,6 @@ private:
     static bool inited;
     static IMiInputDispatcherStub* getImplInstance();
     static void destroyImplInstance();
-    static constexpr const char* LIBPATH = "MiInputDispatcherStubImpl.dll";
 public:
     MiInputDispatcherStub();
     ~MiInputDispatcherStub();
