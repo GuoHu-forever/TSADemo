@@ -16,8 +16,4 @@ void InputDispatcher::transferTouchFocus(){
 void InputDispatcher::getWindowHandleLocked(){
     cout<< typeid(*this).name()<<"::"<<__FUNCTION__<<endl;
 }
-void InputDispatcher::getWindowHandleForStubLocked() {
-      cout<< typeid(*this).name()<<"::"<<__FUNCTION__<<endl;
-     return getWindowHandleLocked();
-}
 

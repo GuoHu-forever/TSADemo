@@ -20,3 +20,7 @@ public:
     InputDispatcher*mInputDispatcher;
     void beforeTransferTouchFocusLocked() override;
 };
+extern "C"  MIINPUT_LIB_API IMiInputDispatcherStub* createInputDispatcherStubImpl();
+
+extern "C"  MIINPUT_LIB_API void destroyInputDispatcherStubImpl(IMiInputDispatcherStub* instance) ;
+

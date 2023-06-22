@@ -31,5 +31,8 @@ public:
     shared_ptr<EventEntry> mPendingEvent GUARDED_BY(mLock);
     void transferTouchFocus();
     void getWindowHandleLocked() REQUIRES(mLock);
-    void getWindowHandleForStubLocked() REQUIRES(mLock);
+    void getWindowHandleForStubLocked() REQUIRES(mLock){
+           cout<< typeid(*this).name()<<"::"<<__FUNCTION__<<endl;
+        getWindowHandleLocked();
+    }
 };

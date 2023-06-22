@@ -7,10 +7,10 @@ void MiInputDispatcherStubImpl::beforeTransferTouchFocusLocked(){
       cout<< typeid(*this).name()<<"::"<<__FUNCTION__<<endl;
             mInputDispatcher->getWindowHandleForStubLocked();
 }
-extern "C"  _declspec(dllexport) IMiInputDispatcherStub* createInputDispatcherStubImpl() {
+ IMiInputDispatcherStub* createInputDispatcherStubImpl() {
     return new MiInputDispatcherStubImpl;
 }
 
-extern "C"  _declspec(dllexport)  void destroyInputDispatcherStubImpl(IMiInputDispatcherStub* instance) {
+ void destroyInputDispatcherStubImpl(IMiInputDispatcherStub* instance) {
     delete instance;
 }
