@@ -1,5 +1,11 @@
 cmake_minimum_required(VERSION 3.5)
-set(CMAKE_CXX_COMPILER "C:\\Program Files\\LLVM\\bin\\clang-cl.exe")
+
+IF (CMAKE_SYSTEM_NAME MATCHES "Linux")
+    set(CMAKE_CXX_COMPILER "/usr/bin/clang++")
+ELSE ()
+    set(CMAKE_CXX_COMPILER "C:\\Program Files\\LLVM\\bin\\clang-cl.exe")
+ENDIF (CMAKE_SYSTEM_NAME MATCHES "Linux")
+
 project(TSADemo  LANGUAGES CXX)
 
 
