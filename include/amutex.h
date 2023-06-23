@@ -29,10 +29,10 @@ public:
     void lock() _LIBCPP_THREAD_SAFETY_ANNOTATION(acquire_capability()){
         mutex::lock();
     }
-    bool try_lock()  _LIBCPP_THREAD_SAFETY_ANNOTATION(try_acquire_capability(true)){
+    bool try_lock()   _LIBCPP_THREAD_SAFETY_ANNOTATION(try_acquire_capability(true))  {
         return mutex::try_lock();
     }
-    void unlock()  _LIBCPP_THREAD_SAFETY_ANNOTATION(release_capability()){
+    void unlock()   _LIBCPP_THREAD_SAFETY_ANNOTATION(release_capability()) {
         mutex::unlock();
     }
 };

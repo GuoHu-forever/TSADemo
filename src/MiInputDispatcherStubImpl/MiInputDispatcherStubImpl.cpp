@@ -1,5 +1,5 @@
 #define MIINPUT_EXPORTS
-//#define _LIBCPP_HAS_THREAD_SAFETY_ANNOTATIONS
+#define _LIBCPP_HAS_THREAD_SAFETY_ANNOTATIONS
 #include "MiInputDispatcherStubImpl.h"
 #include<iostream>
 using namespace std;
