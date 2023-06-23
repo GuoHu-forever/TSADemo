@@ -1,3 +1,4 @@
+#define _LIBCPP_HAS_THREAD_SAFETY_ANNOTATIONS
 #include <iostream>
 #include "InputDispatcher.h"
 #include "MiInputDispatcherStubImpl.h"

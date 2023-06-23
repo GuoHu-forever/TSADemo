@@ -1,3 +1,5 @@
+
+#define _LIBCPP_HAS_THREAD_SAFETY_ANNOTATIONS
 #define INPUT_EXPORTS
 #include "InputDispatcher.h"
 #include "MiInputDispatcherStub.h"

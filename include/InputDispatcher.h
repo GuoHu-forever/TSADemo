@@ -1,9 +1,8 @@
 #pragma once
 
-#include "mutex.h"
-#include<mutex>
 #include<memory>
 #include<iostream>
+#include"amutex.h"
 
 #ifdef _WIN32
     #ifdef INPUT_EXPORTS
@@ -15,18 +14,14 @@
     #define INPUT_LIB_API
 #endif
 
-
-
 using namespace std;
 class EventEntry {
 public:
     int mX = 0;
 };
 
-
-typedef  std::mutex  __attribute__((capability("mutex"))) mutex;
 class INPUT_LIB_API InputDispatcher {
-    mutex mLock;
+    amutex mLock;
 public:
     shared_ptr<EventEntry> mPendingEvent GUARDED_BY(mLock);
     void transferTouchFocus();

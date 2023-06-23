@@ -1,3 +1,4 @@
+
 #include "MiInputDispatcherStub.h"
 LIB_HANDLE MiInputDispatcherStub::sLibMiInputDispatcherImpl = nullptr;
 IMiInputDispatcherStub* MiInputDispatcherStub::sStubImplInstance = nullptr;
